@@ -1,0 +1,93 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet run*)",
+      "Bash(dotnet build*)",
+      "Bash(dotnet test*)",
+      "Bash(dotnet format*)",
+
+      "Bash(npm test*)",
+      "Bash(npm run test*)",
+      "Bash(npm run lint*)",
+      "Bash(npm run build*)",
+      "Bash(npm run typecheck*)",
+      "Bash(npm run format*)",
+      "Bash(npx prettier*)",
+      "Bash(npx tsc*)",
+      "Bash(npx eslint*)",
+      "Bash(pnpm test*)",
+      "Bash(pnpm run lint*)",
+      "Bash(pnpm run build*)",
+      "Bash(pnpm run typecheck*)",
+      "Bash(yarn test*)",
+      "Bash(yarn lint*)",
+      "Bash(yarn build*)",
+
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(git restore --staged*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+
+      "Bash(gh pr view*)",
+      "Bash(gh pr diff*)",
+      "Bash(gh pr checks*)",
+      "Bash(gh pr status*)",
+      "Bash(gh pr list*)",
+
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(fd *)",
+      "Bash(tree *)",
+
+      "Bash(python3*)",
+      "Bash(node *)",
+
+      "Bash(make *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+
+      "Bash(lsof *)",
+      "Bash(lsof -ti *)",
+      "Bash(kill *)"
+    ],
+    "deny": [
+
+      "Bash(git reset --hard*)",
+      "Bash(git clean*)",
+      "Bash(rm -rf*)",
+      "Bash(sudo*)",
+      "Bash(chmod -R*)",
+      "Bash(chown -R*)",
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(kubectl delete*)",
+      "Bash(kubectl apply*)",
+      "Bash(docker system prune*)",
+      "Bash(docker volume rm*)",
+      "Bash(npm publish*)",
+      "Bash(pnpm publish*)",
+      "Bash(yarn publish*)"
+    ]
+  },
+  "model": "Sonnet",
+  "extraKnownMarketplaces": {
+    "local": {
+      "source": {
+        "source": "directory",
+        "path": "/home/chris/.claude/local-plugins"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "usage-stats@local": true
+  }
+}
