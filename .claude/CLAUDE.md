@@ -40,6 +40,30 @@ After generating or modifying code:
 - NEVER hardcode secrets — always read from environment/config
 - Validate and sanitise input at system boundaries only (HTTP handler, CLI entrypoint)
 
+## Output control
+
+Show code modifications and diffs.
+
+Prefer:
+- modified code only
+- unified diffs
+- changed functions/classes only
+- summaries for unchanged areas
+
+Avoid:
+- reprinting entire files
+- repeating unchanged code
+- exhaustive logs
+- long generated reports
+
+For analysis tasks:
+- show top findings first
+- summarize remaining items
+
+When editing files:
+- show only changed sections
+- never output full files unless explicitly requested
+
 ## Command execution
 
 When executing shell commands:
