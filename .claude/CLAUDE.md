@@ -52,6 +52,8 @@ When executing shell commands:
 - Prefer language scripts over complex shell pipelines.
 - Avoid `for`, `while`, `cat <<EOF`, inline Python blocks and long chained commands.
 - Keep commands approval-friendly.
-- Prefer rg over find+grep pipelines
+- Prefer rg / fd instead of find + xargs pipelines
+- Prefer simple commands over shell pipelines
+- Avoid xargs when possible
 - Prefer Python for data extraction/transformation
 - Prefer git commands individually instead of chained commands
