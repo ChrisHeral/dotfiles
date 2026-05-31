@@ -5,12 +5,10 @@
       "Bash(dotnet build*)",
       "Bash(dotnet test*)",
       "Bash(dotnet format*)",
-
       "Bash(npm *)",
       "Bash(npx *)",
       "Bash(pnpm *)",
       "Bash(yarn *)",
-
       "Bash(git status*)",
       "Bash(git diff*)",
       "Bash(git log*)",
@@ -19,13 +17,11 @@
       "Bash(git restore --staged*)",
       "Bash(git add*)",
       "Bash(git commit*)",
-
       "Bash(gh pr view*)",
       "Bash(gh pr diff*)",
       "Bash(gh pr checks*)",
       "Bash(gh pr status*)",
       "Bash(gh pr list*)",
-
       "Bash(find *)",
       "Bash(ls *)",
       "Bash(head *)",
@@ -41,10 +37,15 @@
       "Bash(sed *)",
       "Bash(cat *)",
       "Bash(xargs *)",
-
       "Bash(python3*)",
+      "Bash(python3 -c *)",
       "Bash(node *)",
-
+      "Bash(uv *)",
+      "Bash(pytest *)",
+      "Bash(ruff *)",
+      "Bash(pip *)",
+      "Bash(pip3 *)",
+      "Bash(fuser *)",
       "Bash(make *)",
       "Bash(mkdir *)",
       "Bash(cp *)",
@@ -52,13 +53,16 @@
       "Bash(touch *)",
       "Bash(curl *)",
       "Bash(wget *)",
-
       "Bash(lsof *)",
       "Bash(lsof -ti *)",
-      "Bash(kill *)"
+      "Bash(kill *)",
+      "Bash(ps *)",
+      "Bash(pkill *)",
+      "Bash(pgrep *)",
+      "Bash(netstat *)",
+      "Bash(ss *)"
     ],
     "deny": [
-
       "Bash(git reset --hard*)",
       "Bash(git clean*)",
       "Bash(rm -rf*)",
@@ -78,7 +82,9 @@
       "Bash(yarn publish*)"
     ]
   },
-  "model": "Sonnet",
+  "enabledPlugins": {
+    "usage-stats@local": true
+  },
   "extraKnownMarketplaces": {
     "local": {
       "source": {
@@ -86,8 +92,5 @@
         "path": "/home/chris/.claude/local-plugins"
       }
     }
-  },
-  "enabledPlugins": {
-    "usage-stats@local": true
   }
 }
