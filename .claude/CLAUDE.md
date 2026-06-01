@@ -45,85 +45,15 @@ After generating or modifying code:
 
 ## Output control
 
-Show code modifications and diffs.
-
-Prefer:
-- modified code only
-- unified diffs
-- changed functions/classes only
-- summaries for unchanged areas
-
-Avoid:
-- reprinting entire files
-- repeating unchanged code
-- exhaustive logs
-- long generated reports
-
-For analysis tasks:
-- show top findings first
-- summarize remaining items
-
-When editing files:
-- show only changed sections
-- never output full files unless explicitly requested
+Show only what changed: unified diffs, modified functions/classes, summaries for unchanged areas. Never reprint entire files (unless explicitly requested), unchanged code, or exhaustive logs. For analysis tasks, show top findings first and summarize the rest.
 
 ## Command execution
 
-When executing shell commands:
+Optimize commands to avoid approval prompts — shell metacharacters trigger them.
 
-- Assume shell metacharacters trigger approval prompts — optimize commands to avoid them. Steer clear of pipes `|`, globs `*`/`?`, redirections `>`/`<`, command substitution `$()`, chaining `;`/`&&`, background `&`, and brace/glob expansion. Prefer a single tool invocation (rg, fd, a dedicated tool, or a `/tmp` script) over any pipeline.
-- Prefer single-line commands whenever possible.
-- Avoid multiline Bash blocks, heredocs, loops and inline scripts because they trigger confirmation prompts.
-- Avoid command chaining with `;` — prefer separate commands:
-  - BAD: `pkill -f "dotnet run" ; echo "killed"`
-  - GOOD: `pkill -f "dotnet run"`
-- Avoid multiline inline Python commands:
-  - BAD: `python3 -c "import json; ..."`
-  - GOOD: write `/tmp/script.py` then run `python3 /tmp/script.py`
-- Prefer creating temporary scripts then executing them:
-  - Python: write `/tmp/script.py` then run `python3 /tmp/script.py`
-  - Shell: write `/tmp/script.sh` then execute it
-- Prefer language scripts over complex shell pipelines.
-- Avoid `for`, `while`, `cat <<EOF`, inline Python blocks and long chained commands.
-- Keep commands approval-friendly.
-- Prefer rg / fd instead of find + xargs pipelines
-- Prefer simple commands over shell pipelines
-- Avoid xargs when possible
-- Prefer Python for data extraction/transformation
-- Prefer git commands individually instead of chained commands
-- Never chain git state-changing commands (stash, checkout, reset, rebase):
-  - BAD: `git stash && make check && git stash pop`
-  - GOOD: run each command separately
-- Avoid command substitution `$()` — prefer sequential commands:
-  - BAD: `kill $(lsof -ti:8000)`
-  - GOOD: `lsof -ti:8000` then `pkill -f serve.py`
-- Prefer explicit interpreter paths over shell substitution:
-  - BAD: `mypy src --python-executable $(uv run which python)`
-  - GOOD: `mypy src --python-executable .venv/bin/python`
-- Prefer one command per execution request — avoid chaining unrelated commands in a single Bash call
-- Avoid `cd ... && command` — prefer passing explicit paths to commands (a stray `cd` also leaks into the persistent shell cwd and breaks later commands):
-  - BAD: `cd path && rg pattern`
-  - GOOD: `rg pattern path`
-  - Do not combine `cd` with redirections, pipes, semicolons, or chained commands — run separate commands instead
-- Prefer `uv pip install` over `pip install` for installing Python packages:
-  - BAD: `pip install package`
-  - GOOD: `uv pip install package`
-- Avoid shell input redirection for scripts:
-  - BAD: `node --input-type=module < /tmp/script.mjs`
-  - GOOD: `node /tmp/script.mjs`
-- Prefer foreground execution for local servers — avoid `nohup`, `>`, and background jobs (`&`)
-
-## Python execution
-
-Never use inline script execution. Always write to a file first.
-
-Avoid:
-- `python3 -c "..."` — even single-line
-- `node -e "..."`
-- heredocs (`cat <<EOF`)
-- stdin piping (`echo "..." | python3`)
-- shell loops (`for`, `while`)
-
-Good:
-- Write `/tmp/script.py` then run `python3 /tmp/script.py`
-- Write `/tmp/script.mjs` then run `node /tmp/script.mjs`
+- **No metacharacters**: avoid pipes `|`, redirections `>`/`<`, command substitution `$()`, chaining `;`/`&&`, background `&`, globs, and brace expansion. Prefer a single tool invocation (rg, fd, a dedicated tool) over a pipeline.
+- **One command per call**: never chain unrelated commands, and never chain git state-changing commands (stash, checkout, reset, rebase) — run each separately.
+- **No `cd ... && cmd`**: pass explicit paths instead (`rg pattern path`, not `cd path && rg pattern`). A stray `cd` leaks into the persistent shell cwd.
+- **No inline scripts**: never `python3 -c`, `node -e`, heredocs (`cat <<EOF`), stdin piping (`echo ... | python3`), or shell loops (`for`/`while`). Write `/tmp/script.py` (or `/tmp/script.mjs`) and run it.
+- **Explicit interpreters/installers**: prefer `.venv/bin/python` over `$(uv run which python)`; prefer `uv pip install` over `pip install`.
+- **Local servers**: run in the foreground — no `nohup`, `&`, or output redirection.
