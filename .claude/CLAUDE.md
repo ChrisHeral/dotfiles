@@ -57,3 +57,6 @@ Optimize commands to avoid approval prompts — shell metacharacters trigger the
 - **No inline scripts**: never `python3 -c`, `node -e`, heredocs (`cat <<EOF`), stdin piping (`echo ... | python3`), or shell loops (`for`/`while`). Write `/tmp/script.py` (or `/tmp/script.mjs`) and run it.
 - **Explicit interpreters/installers**: prefer `.venv/bin/python` over `$(uv run which python)`; prefer `uv pip install` over `pip install`.
 - **Local servers**: run in the foreground — no `nohup`, `&`, or output redirection.
+- **Dependency inspection**: never use `cd`, pipes, `grep`, `sort`, or other shell filtering to inspect dependencies. Read the manifests directly (`requirements.txt`, `pyproject.toml`, `uv.lock`, `package.json`, lock files). If a command is genuinely required, run one at a time.
+- **Single-line commands**: never split a shell command across multiple lines — every command must be a single line.
+- **Never pass `-r` to ripgrep**: in `rg`, `-r` is `--replace`, NOT recursive (rg is recursive by default). `rg -rln "x" path` parses as `--replace=ln` and rewrites matches in the output. Use `rg -n`/`rg -l`/`rg -ln`. If rg output seems to swap the search term for a stray word, suspect this flag first, not the harness.
