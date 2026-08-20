@@ -81,5 +81,7 @@
       "Bash(pnpm publish:*)",
       "Bash(yarn publish:*)"
     ]
-  }
+  },
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true
 }
