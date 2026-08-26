@@ -60,3 +60,8 @@ Optimize commands to avoid approval prompts — shell metacharacters trigger the
 - **Dependency inspection**: never use `cd`, pipes, `grep`, `sort`, or other shell filtering to inspect dependencies. Read the manifests directly (`requirements.txt`, `pyproject.toml`, `uv.lock`, `package.json`, lock files). If a command is genuinely required, run one at a time.
 - **Single-line commands**: never split a shell command across multiple lines — every command must be a single line.
 - **Never pass `-r` to ripgrep**: in `rg`, `-r` is `--replace`, NOT recursive (rg is recursive by default). `rg -rln "x" path` parses as `--replace=ln` and rewrites matches in the output. Use `rg -n`/`rg -l`/`rg -ln`. If rg output seems to swap the search term for a stray word, suspect this flag first, not the harness.
+
+## Contexte personnel
+
+Le savoir personnel non lié à un projet (notes, références, projets en cours) vit dans
+`~/Perso/second-cerveau/`, organisé en PARA. Y chercher avant de poser la question.
