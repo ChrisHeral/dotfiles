@@ -65,7 +65,7 @@ fi
 
 git_branch_segment() {
     if type __git_ps1 >/dev/null 2>&1; then
-        __git_ps1 ' \[\033[01;33m\](%s)\[\033[00m\]'
+        __git_ps1 $' \001\033[01;33m\002(%s)\001\033[00m\002'
     fi
 }
 
