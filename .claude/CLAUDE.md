@@ -36,6 +36,33 @@ When scope is ambiguous, ask one targeted question before proposing a plan.
 - **Conventional format**: `feat:`, `fix:`, `refactor:`, `test:`, `ci:`, `chore:`
 - **Never push spontaneously** — only push when explicitly asked
 
+## Verification before assertion
+
+- **Heuristic output is not a fact.** When a result comes from name matching, size comparison,
+  a partial listing or any other approximation, say so **and open 2-3 cases at random** before
+  publishing the total. Verifying a sample is cheap; a wrong total gets acted on.
+- **A number must measure what the reader will read into it.** Before putting a figure in
+  bold, ask what it actually measures versus what it looks like — an expiry date is not a
+  balance, a file size is not an identity. If it is a proxy, either go get the real measure or
+  do not highlight it. Exact and misleading is worse than approximate and labelled.
+- **A cause needs a mechanism, not a coincidence of timing.** Correlation plus plausibility is
+  not a diagnosis, and neither is a status label — "disconnected" may well be deliberate.
+  Re-read my own output looking for what contradicts it: two counters exactly equal, a latency
+  decreasing in steps, a value that is suspiciously round. The counter-evidence is usually
+  already on screen.
+- **Grade a destructive action by what is lost if I am wrong**, never by how easy the gesture
+  is technically.
+- **When the user contradicts a computation, they are usually right.** My errors come from
+  treating a source as complete or exact when it is partial. Before opposing a calculation to
+  what they read, find what my deduction *assumes* about the source. A verified impossibility
+  eliminates possibilities, it establishes nothing. When they hold their ground, look for the
+  scenario that proves them right instead of restating mine.
+- **After any upstream correction, re-run the whole chain from the start.** A correction
+  invalidates everything downstream of it. Never reuse a memorised or hand-copied intermediate
+  state, and re-check an impossibility against the *current* state before asserting it again.
+- **To deduplicate files, fingerprint the first 64 KB — never the size.** A size tolerance
+  matches arbitrary small files with each other, and several tools truncate output by a sector.
+
 ## Quality baseline
 
 After generating or modifying code:
