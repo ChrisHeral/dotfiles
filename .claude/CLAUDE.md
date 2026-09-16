@@ -3,6 +3,14 @@
 Respond in French by default, unless the project's CLAUDE.md specifies otherwise.
 Code, comments, and commit messages follow the conventions of each project.
 
+## Comments
+
+Sober by default — **this overrides "follow the conventions of each project"**: a densely
+commented codebase is not a mandate to keep commenting it. Comment only what the code cannot
+carry itself: an external API pitfall, an order that matters, an upstream quirk. No paraphrase
+of the next line, no section banners, no XML doc on every member. Naming carries intent;
+extract a well-named method rather than explain. Long rationale goes to an ADR.
+
 ## Plan before implementation
 
 Always propose a minimal plan and wait for explicit user approval before writing any code.
