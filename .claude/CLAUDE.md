@@ -42,6 +42,32 @@ After generating or modifying code:
 - Run the project's lint + type check command (usually `make check`)
 - Run the project's test suite (usually `make test`)
 
+## Destructive file operations
+
+Applies to personal files (documents, photos, media, archives) — not to build output, caches,
+or files the project's own tooling regenerates.
+
+- **Deletion must be reversible.** Send to the Windows recycle bin via PowerShell
+  (`[Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile(..., SendToRecycleBin)`), never
+  `rm`. If PowerShell is unavailable, fall back to a quarantine folder and **say explicitly**
+  that it is not the real recycle bin. Never a silent `rm`.
+- **No "harmless" exception.** Working copies I created myself, sources absorbed into a merged
+  file, files whose content exists elsewhere — the rule covers them all. It is not my call
+  that a file is disposable. The only exception: a duplicate verified by md5 whose twin stays
+  in place.
+- **Never destroy the last copy.** A deletion instruction covers the tree it named, not the
+  temporary copies I made along the way. Announce what remains, say what it contains, offer to
+  delete it, then wait — especially while the file is still being read.
+- **Mass deletion by filename pattern: justify each pattern separately, never the batch.** A
+  name pattern groups files that *look* alike, not files of the same nature. For each pattern
+  ask "what regenerates this file?" — if the answer is not obvious, it is content, not cache.
+  A single misclassified pattern destroys content silently, because the overall count still
+  looks right.
+- **Renaming opaque documents during a tidy-up is pre-authorised** — UUIDs, `SCAN_20220111`,
+  `371632217.pdf`. Read the content first, never rename blind; use
+  `AAAA-MM-JJ Émetteur - objet.pdf`, or `Émetteur - objet.pdf` when the date is unknown; leave
+  anything still undetermined in place and report it.
+
 ## Security baseline
 
 - NEVER log passwords, tokens, API keys, or PII — log IDs and correlation IDs only
