@@ -36,6 +36,14 @@ When scope is ambiguous, ask one targeted question before proposing a plan.
 - **Conventional format**: `feat:`, `fix:`, `refactor:`, `test:`, `ci:`, `chore:`
 - **Never push spontaneously** — only push when explicitly asked
 
+## Worktree hygiene
+
+Work on a branch in its own worktree; clean it up once the MR is merged, and only after proving
+nothing is lost: `status --short --branch` clean, then the tip is an ancestor of `origin/master`
+or — after a squash/rebase — `git diff <tip> origin/master -- <paths touched>` is empty.
+Then `worktree remove`, `branch -D` (never trust `-d`, it compares to the current branch),
+`fetch --prune`. If the project provides a `/worktree-cleanup` skill, use it.
+
 ## Verification before assertion
 
 - **Heuristic output is not a fact.** When a result comes from name matching, size comparison,
