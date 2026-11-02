@@ -83,5 +83,9 @@
     ]
   },
   "tui": "fullscreen",
+  "statusLine": {
+    "type": "command",
+    "command": "python3 /home/chris/.claude/statusline.py"
+  },
   "skipWorkflowUsageWarning": true
 }
