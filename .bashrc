@@ -130,3 +130,8 @@ if ! shopt -oq posix; then
 fi
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# autoMode n'est lu que dans les réglages utilisateur ou via --settings : ce fichier, propre au poste, reste hors de ce repo public
+if [ -f "$HOME/.claude/settings.private.json" ]; then
+  alias claude='claude --settings "$HOME/.claude/settings.private.json"'
+fi
