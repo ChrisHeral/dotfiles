@@ -86,6 +86,11 @@ or files the project's own tooling regenerates.
   (`[Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile(..., SendToRecycleBin)`), never
   `rm`. If PowerShell is unavailable, fall back to a quarantine folder and **say explicitly**
   that it is not the real recycle bin. Never a silent `rm`.
+- **Files inside WSL never reach the recycle bin.** Windows sees them through the
+  `\\wsl.localhost` network share, and a network path is deleted permanently, with no error.
+  For anything under the WSL filesystem, move it to `~/.quarantaine/<date>-<subject>/` instead.
+  Recycle bin only for files on a Windows drive (`/mnt/c/...`); afterwards, confirm the item is
+  in the bin.
 - **No "harmless" exception.** Working copies I created myself, sources absorbed into a merged
   file, files whose content exists elsewhere — the rule covers them all. It is not my call
   that a file is disposable. The only exception: a duplicate verified by md5 whose twin stays
